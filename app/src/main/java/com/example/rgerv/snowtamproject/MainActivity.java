@@ -10,6 +10,7 @@ import android.text.Layout;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -24,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
     Context context;
     CharSequence msg;
     int duration;
-    ImageButton airplane_delete;
     LinearLayout layout;
 
     @Override
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View view) {
                         if (!searchCode.getText().toString().equals("")) {
                             //we have to check the airplane's existence
-                            layout.addView(createNewTextView(searchCode.getText().toString()));
+                            layout.addView(addCde(searchCode.getText().toString()));
 
                         }else{
                             infos = Toast.makeText(context, msg, duration);
@@ -58,13 +58,39 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private LinearLayout addCde(String s){
+        final LinearLayout l = new LinearLayout(context);
+        l.setOrientation(LinearLayout.HORIZONTAL);
+        l.addView(createNewTextView(s));
+        l.addView(createNewButton(l));
+        return l;
+    }
+
     private TextView createNewTextView(String s) {
-        final LinearLayout.LayoutParams lparams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        final LinearLayout.LayoutParams lparams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT,3);
         final TextView airplane_code = new TextView(this);
         airplane_code.setLayoutParams(lparams);
         airplane_code.setText(s);
         return airplane_code;
     }
 
+
+    private ImageButton createNewButton(final LinearLayout l) {
+        final ImageButton airplane_delete = new ImageButton(context);
+        final LinearLayout.LayoutParams lparams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        airplane_delete.setImageResource(R.mipmap.ic_delete);
+        airplane_delete.setLayoutParams(lparams);
+        airplane_delete.setPadding(0,0,0,0);
+        airplane_delete.setBackgroundColor(getResources().getColor(R.color.transparent));
+        airplane_delete.setMaxHeight(10);
+        airplane_delete.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        l.removeAllViews();
+                    }
+                });
+        return airplane_delete;
+    }
 
 }
