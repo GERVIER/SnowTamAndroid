@@ -2,6 +2,7 @@ package com.example.rgerv.snowtamproject;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -9,7 +10,9 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.FrameLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 
 import com.example.rgerv.snowtamproject.Controller.DrawerItemAdapter;
 import com.example.rgerv.snowtamproject.Model.ItemModel;
@@ -23,6 +26,7 @@ public class DisplayActivity extends AppCompatActivity {
     private CharSequence mDrawerTitle;
     private CharSequence mTitle;
     android.support.v7.app.ActionBarDrawerToggle mDrawerToggle;
+    private RelativeLayout drawerContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +36,7 @@ public class DisplayActivity extends AppCompatActivity {
         mNavigationDrawerItemIDs = getIntent().getIntArrayExtra("airportCodes");
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = findViewById(R.id.left_drawer);
+        drawerContainer = findViewById(R.id.drawerContainer);
         setupToolbar();
 
         ItemModel[] drawerItem = new ItemModel[mNavigationDrawerItemIDs.length];
@@ -69,7 +74,7 @@ public class DisplayActivity extends AppCompatActivity {
             mDrawerList.setItemChecked(position, true);
             mDrawerList.setSelection(position);
             //setTitle(mNavigationDrawerItemIDs[position]);
-            mDrawerLayout.closeDrawer(mDrawerList);
+            mDrawerLayout.closeDrawer(drawerContainer);
 
     }
 
