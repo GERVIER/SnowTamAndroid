@@ -17,7 +17,6 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.example.rgerv.snowtamproject.Model.AirportInfoRetrieving;
@@ -37,13 +36,12 @@ public class MainActivity extends AppCompatActivity {
     CharSequence msg;
     int duration;
     LinearLayout layout;
-
     private String DebugTag = "Debug-MainActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         context = this;
         duration = Toast.LENGTH_LONG;
         msg = getString(R.string.code_missing);
@@ -58,18 +56,18 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View view) {
                         if (!searchCode.getText().toString().equals("")) {
                             //we have to check the airplane's existence
-                            layout.addView(addCde(searchCode.getText().toString()));
-
+                            searchAirportLocation();
                         } else {
                             infos = Toast.makeText(context, msg, duration);
                             infos.show();
                         }
+
                     }
                 }
         );
     }
 
-    public void searchAirportLocation(View view){
+    public void searchAirportLocation(){
         //TODO LINK WITH THE LIST OF AIRPORT.
         Response.Listener<JSONArray> responseListener = new Response.Listener<JSONArray>() {
             @Override
@@ -85,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
                         Airport a = new Airport(airport);
 
                         Log.d(DebugTag, a.toString());
-
+                        layout.addView(addCde(a.getIcaoCode() + " " + a.getStateName()));
                         AirportList.getInstance().getAirportList().add(a);
                         Log.d(DebugTag, "Airport n° " + AirportList.getInstance().getAirportList().size() + " added !");
                     }
@@ -103,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        AirportInfoRetrieving.RetrieveInformation("ENBO", this, responseListener, errorListener);
+        AirportInfoRetrieving.RetrieveInformation(searchCode.getText().toString(), this, responseListener, errorListener);
     }
 
     private LinearLayout addCde(String s){
@@ -139,5 +137,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
         return airplane_delete;
-    }}
+    }
+
+}
 
