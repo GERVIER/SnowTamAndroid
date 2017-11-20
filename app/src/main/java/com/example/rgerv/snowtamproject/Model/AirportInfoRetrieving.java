@@ -1,18 +1,11 @@
 package com.example.rgerv.snowtamproject.Model;
 
 import android.content.Context;
-import android.os.AsyncTask;
-import android.util.Log;
-import android.webkit.WebView;
-import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
-
-import java.io.BufferedInputStream;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 
 /**
  * Created by rgerv on 15/11/2017.
@@ -22,15 +15,30 @@ import java.net.URL;
 
 public class AirportInfoRetrieving{
 
-    public static void RetriveInformation(String AirportName, Context context){
-    //TODO : FINISH TO IMPLEMENT THE GSON REQUEST
+    private static AirportInfoRetrieving instance = new AirportInfoRetrieving();
+
+    public static AirportInfoRetrieving getInstance(){
+        return instance;
+    }
+
+    private AirportInfoRetrieving(){
+
+    }
+
+    /**
+     * Create a request to the API to get the airport information
+     * @param airportName : ICAO code of the airport you want the information
+     * @param context : context of the calling view
+     * @param responseListener : listener launched when the request is finish. Typically, what is wanted to do with the data retrieved
+     * @param errorListener : listener launched is an error occur during the request
+     */
+    public static void RetrieveInformation(String airportName, Context context, Response.Listener responseListener, Response.ErrorListener errorListener){
         RequestQueue queue = Volley.newRequestQueue(context);
-        /*
-        GSONRequest<ArtistList> airPortRequest =
-                new GSONRequest<>("http://api.deezer.com/search/artist?q=" + artist,
-                        ArtistList.class, null, responseListener, errorListener);
+        String ApiKey = "f08b79d0-ca26-11e7-b99a-fde72d126a17";
+        String request = "https://v4p4sz5ijk.execute-api.us-east-1.amazonaws.com/anbdata/airports/locations/doc7910?api_key="+ApiKey+"&airports="+airportName+"&format=json";
 
-        queue.add(artistRequest);*/
+        JsonArrayRequest airPortRequest = new JsonArrayRequest(request, responseListener, errorListener );
 
+        queue.add(airPortRequest);
     }
 }
