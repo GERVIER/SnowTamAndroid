@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">SnowTamProject</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_display">DisplayActivity</string>
+    <string name="lMenu_display_hide">Display/hide</string>
+    <string name="add_airport_code">Search new airport code</string>
 </resources>
