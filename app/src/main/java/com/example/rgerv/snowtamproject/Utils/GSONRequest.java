@@ -1,4 +1,4 @@
-package com.example.rgerv.snowtamproject.Model;
+package com.example.rgerv.snowtamproject.Utils;
 
 import com.android.volley.Request;
 import com.android.volley.Response;

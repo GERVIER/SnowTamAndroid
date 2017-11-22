@@ -3,4 +3,5 @@
     <string name="app_name">SnowTamProject</string>
     <string name="action_settings">Paramètres</string>
     <string name="code_missing">Entrez un code.</string>
+    <string name="incorrect_code">Le code est incorrect.</string>
 </resources>

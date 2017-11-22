@@ -1,4 +1,4 @@
-package com.example.rgerv.snowtamproject.Model;
+package com.example.rgerv.snowtamproject.Utils;
 
 import android.content.Context;
 
