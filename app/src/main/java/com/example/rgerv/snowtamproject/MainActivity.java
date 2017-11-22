@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewParent;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
@@ -184,7 +185,11 @@ public class MainActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        int index = layout.indexOfChild(l);
                         l.removeAllViews();
+                        layout.removeView(l);
+                        Log.d("Debug-", "Click on : " + index);
+                        AirportList.getInstance().getAirportList().remove(index);
                     }
                 });
         return airplane_delete;
