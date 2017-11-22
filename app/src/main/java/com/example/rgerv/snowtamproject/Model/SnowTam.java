@@ -98,7 +98,7 @@ public class SnowTam {
             }
 
             if(carac.equals("F)")){
-                sb.append(analyseFchannel(caracs[j+1]));
+                //sb.append(analyseFchannel(caracs[j+1]));
             }
 
             if(carac.equals("G)")){
