@@ -1,6 +1,7 @@
 package com.example.rgerv.snowtamproject;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -33,6 +34,7 @@ import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
 
+    FloatingActionButton fab;
     ImageButton validate;
     EditText searchCode;
     Toast infos ;
@@ -41,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
     int duration;
     LinearLayout layout;
     private String DebugTag = "Debug-MainActivity";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         searchCode = (EditText) findViewById(R.id.search_code);
         validate = (ImageButton) findViewById(R.id.validate);
         layout = (LinearLayout) findViewById(R.id.layout2);
+        fab = findViewById(R.id.floatingActionButton);
 
         validate.setOnClickListener(
                 new View.OnClickListener() {
@@ -71,6 +73,17 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
         );
+
+        fab.setOnClickListener(new View.OnClickListener() {
+                                   @Override
+                                   public void onClick(View view) {
+                                       Intent intent = new Intent(context, DisplayActivity.class);
+                                       intent.putExtra("airportCode", 0);
+                                        startActivity(intent);
+                                   }
+                               }
+        );
+
     }
 
     public void searchAirportLocation(){
