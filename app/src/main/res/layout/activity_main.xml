@@ -10,7 +10,7 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/id_logo"
@@ -74,7 +74,6 @@
 
         </ScrollView>
 
-
     </android.support.constraint.ConstraintLayout>
 
 
@@ -88,7 +87,6 @@
         app:srcCompat="@drawable/ic_search"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:layout_gravity="end|bottom"/>
 
 </RelativeLayout>

@@ -1,5 +1,7 @@
 package com.example.rgerv.snowtamproject.Model;
 
+import android.support.annotation.NonNull;
+
 import java.text.SimpleDateFormat;
 
 /**
@@ -98,15 +100,17 @@ public class SnowTam {
             }
 
             if(carac.equals("F)")){
-                //sb.append(analyseFchannel(caracs[j+1]));
+                sb.append(analyseFdata(caracs[j+1]));
+                sb.append(" ");
             }
 
             if(carac.equals("G)")){
-                sb.append(" " + caracs[j+1] + " ");
+                sb.append(analyseGdata(caracs[j+1]));
+                sb.append(" ");
             }
 
             if(carac.equals("H)")){
-                sb.append(caracs[j+1] + "\n");
+                sb.append(analyseHdata(caracs[j+1], caracs[j+1]));
             }
 
         }
@@ -114,12 +118,18 @@ public class SnowTam {
         return sb.toString();
     }
 
-    private String analyseFchannel(String carac){
+    @NonNull
+    private String analyseFdata(String carac){
         StringBuilder sb = new StringBuilder();
         sb.append("F) ");
         String[] conditions = carac.split("/");
         for(int i = 0; i<conditions.length; i++){
-            int condition = Integer.parseInt(conditions[i]);
+            int condition;
+            try{
+                condition = Integer.parseInt(conditions[i]);
+            }catch (Exception e){
+                condition = -1;
+            }
 
             switch (i){
                 case 0:
@@ -150,11 +160,93 @@ public class SnowTam {
                     sb.append("RIME OR FROST COVERED");
                     break;
                 default:
-                    sb.append("ERROR");
+                    sb.append("NA");
             }
 
             if(i < 2) sb.append(" / ");
 
+        }
+        return sb.toString();
+    }
+
+    private String analyseGdata(String carac){
+        StringBuilder sb = new StringBuilder();
+        sb.append("G) MEAN DEPTH ");
+
+        String[] conditions = carac.split("/");
+        for(int i = 0; i<conditions.length; i++){
+
+            switch (i){
+                case 0:
+                    sb.append("Threshold: ");
+                    break;
+                case 1:
+                    sb.append("Mid runway: ");
+                    break;
+                case 2:
+                    sb.append("Roll out: ");
+                    break;
+
+                default:
+                    sb.append("");
+            }
+
+            sb.append(conditions[i]);
+            if(!conditions[i].equals("XX"))
+                sb.append("mm");
+
+            if(i < 2) sb.append(" / ");
+
+        }
+        return sb.toString();
+    }
+
+    private String analyseHdata(String carac, String instru){
+        StringBuilder sb = new StringBuilder();
+        sb.append("H) BRAKING ACTION ");
+
+        String[] conditions = carac.split("/");
+        for(int i = 0; i<conditions.length; i++){
+
+            String condition = conditions[i];
+            switch (i){
+                case 0:
+                    sb.append("Threshold: ");
+                    break;
+                case 1:
+                    sb.append("Mid runway: ");
+                    break;
+                case 2:
+                    sb.append("Roll out: ");
+                    break;
+
+                default:
+                    sb.append("");
+            }
+
+            switch (condition) {
+                case "5":
+                    sb.append("GOOD");
+                    break;
+                case "4":
+                    sb.append("MEDIUM TO GOOD");
+                    break;
+                case "3":
+                    sb.append("MEDIUM)");
+                    break;
+                case "2":
+                    sb.append("(MEDIUM TO POOR");
+                    break;
+                case "1":
+                    sb.append("POOR");
+                    break;
+                case "9":
+                    sb.append("RIME OR FROST COVERED");
+                    break;
+                default:
+                    sb.append("NA");
+            }
+            if(i < 2) sb.append(" / ");
         }
         return sb.toString();
     }
