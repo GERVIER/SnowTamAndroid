@@ -58,10 +58,9 @@
         </ListView>
         <EditText
             android:id="@+id/search_code"
-            android:layout_width="75dp"
+            android:layout_width="175dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_alignEnd="@id/left_drawer"
+            android:layout_above="@id/fab_info"
             android:hint="Code"
             android:inputType="textCapSentences" />
 
@@ -74,6 +73,7 @@
             android:background="#80000000"
             app:srcCompat="@android:drawable/ic_menu_add"
             android:contentDescription="TODO" />
+
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab_info"
             android:layout_width="wrap_content"
