@@ -13,13 +13,18 @@ import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.example.rgerv.snowtamproject.Controller.DrawerItemAdapter;
+import com.example.rgerv.snowtamproject.Model.Airport;
+import com.example.rgerv.snowtamproject.Model.AirportList;
 import com.example.rgerv.snowtamproject.Model.ItemModel;
+
+import java.util.List;
 
 public class DisplayActivity extends AppCompatActivity {
 
-    private int[] mNavigationDrawerItemIDs;
+    private int aiportDisplayId;
     public DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
     Toolbar toolbar;
@@ -27,22 +32,29 @@ public class DisplayActivity extends AppCompatActivity {
     private CharSequence mTitle;
     android.support.v7.app.ActionBarDrawerToggle mDrawerToggle;
     private RelativeLayout drawerContainer;
+    private List<Airport> airportList;
+    private TextView airportNameDisplay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display);
         mTitle = mDrawerTitle = getTitle();
-        mNavigationDrawerItemIDs = getIntent().getIntArrayExtra("airportCodes");
+        aiportDisplayId = getIntent().getIntExtra("airportCode",0);
+
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = findViewById(R.id.left_drawer);
         drawerContainer = findViewById(R.id.drawerContainer);
+        airportNameDisplay = findViewById(R.id.airportName);
+
         setupToolbar();
 
-        ItemModel[] drawerItem = new ItemModel[mNavigationDrawerItemIDs.length];
+        airportList = AirportList.getInstance().getAirportList();
+        airportNameDisplay.setText(airportList.get(aiportDisplayId).getIcaoCode());
+        ItemModel[] drawerItem = new ItemModel[airportList.size()];
 
-        for(int i = 0; i< mNavigationDrawerItemIDs.length; i++){
-            drawerItem[i] = new ItemModel("name " + i);
+        for(int i = 0; i< airportList.size(); i++){
+            drawerItem[i] = new ItemModel(airportList.get(i).getIcaoCode());
         }
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
@@ -67,15 +79,15 @@ public class DisplayActivity extends AppCompatActivity {
     }
 
     private void selectItem(int position) {
-
         Intent intent = new Intent(DisplayActivity.this, DisplayActivity.class);
-        intent.putExtra("displayItem", position);
-        intent.putExtra("airportCodes", this.mNavigationDrawerItemIDs);
+        intent.putExtra("airportCode", position);
             mDrawerList.setItemChecked(position, true);
             mDrawerList.setSelection(position);
             //setTitle(mNavigationDrawerItemIDs[position]);
             mDrawerLayout.closeDrawer(drawerContainer);
-
+            //To prevent endless previous activities of display and instead return directly to homeActivity
+            finish();
+            startActivity(intent);
     }
 
     @Override
