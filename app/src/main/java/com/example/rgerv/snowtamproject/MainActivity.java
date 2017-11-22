@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -41,10 +42,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
         context = this;
         duration = Toast.LENGTH_LONG;
-        msg = getString(R.string.code_missing);
+
 
         searchCode = (EditText) findViewById(R.id.search_code);
         validate = (ImageButton) findViewById(R.id.validate);
@@ -58,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
                             //we have to check the airplane's existence
                             searchAirportLocation();
                         } else {
+                            msg = getString(R.string.code_missing);
                             infos = Toast.makeText(context, msg, duration);
                             infos.show();
                         }
@@ -75,6 +78,10 @@ public class MainActivity extends AppCompatActivity {
                 try{
                     if(response.length() == 0){
                         Log.d(DebugTag, "No airport Found");
+                        //affichage d'un message pour l'utilisateur
+                        msg = getString(R.string.incorrect_code);
+                        infos = Toast.makeText(context, msg, duration);
+                        infos.show();
                     }
                     else{
                         JSONObject airport = response.getJSONObject(0);
@@ -100,8 +107,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(DebugTag, "onErrorResponse: " + error.getMessage());
             }
         };
-
-        AirportInfoRetrieving.RetrieveInformation(searchCode.getText().toString(), this, responseListener, errorListener);
+        AirportInfoRetrieving.RetrieveInformation(searchCode.getText().toString().trim(), this, responseListener, errorListener);
     }
 
     private LinearLayout addCde(String s){
