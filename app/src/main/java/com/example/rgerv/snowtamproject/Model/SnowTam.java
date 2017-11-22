@@ -106,11 +106,16 @@ public class SnowTam {
 
             if(carac.equals("G)")){
                 sb.append(analyseGdata(caracs[j+1]));
-                sb.append(" ");
+                sb.append("\n");
             }
 
             if(carac.equals("H)")){
-                sb.append(analyseHdata(caracs[j+1], caracs[j+1]));
+                try{
+                    sb.append(analyseHdata(caracs[j+1], caracs[j+2]));
+                }catch (ArrayIndexOutOfBoundsException e){
+                    sb.append(analyseHdata(caracs[j+1]));
+                }
+
             }
 
         }
@@ -201,13 +206,12 @@ public class SnowTam {
         return sb.toString();
     }
 
-    private String analyseHdata(String carac, String instru){
+    private String analyseHdata(String... carac){
         StringBuilder sb = new StringBuilder();
         sb.append("H) BRAKING ACTION ");
 
-        String[] conditions = carac.split("/");
+        String[] conditions = carac[0].split("/");
         for(int i = 0; i<conditions.length; i++){
-
             String condition = conditions[i];
             switch (i){
                 case 0:
@@ -247,6 +251,39 @@ public class SnowTam {
                     sb.append("NA");
             }
             if(i < 2) sb.append(" / ");
+        }
+
+        if(carac.length == 2){
+            sb.append("\n");
+            switch (carac[1]){
+                case "BRD" :
+                    sb.append("");
+                    break;
+                case "GRT" :
+                    sb.append("");
+                    break;
+                case "MUM" :
+                    sb.append("");
+                    break;
+                case "RFT" :
+                    sb.append("");
+                    break;
+                case "SFH" :
+                    sb.append("");
+                    break;
+                case "SFL" :
+                    sb.append("");
+                    break;
+                case "SKH" :
+                    sb.append("");
+                    break;
+                case "SKL" :
+                    sb.append("");
+                    break;
+                case "TAP" :
+                    sb.append("");
+                    break;
+            }
         }
         return sb.toString();
     }

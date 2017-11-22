@@ -52,9 +52,9 @@ public class MainActivity extends AppCompatActivity {
         duration = Toast.LENGTH_LONG;
 
 
-        searchCode = (EditText) findViewById(R.id.search_code);
-        validate = (ImageButton) findViewById(R.id.validate);
-        layout = (LinearLayout) findViewById(R.id.layout2);
+        searchCode =  findViewById(R.id.search_code);
+        validate =  findViewById(R.id.validate);
+        layout =  findViewById(R.id.layout2);
         fab = findViewById(R.id.floatingActionButton);
 
         validate.setOnClickListener(
@@ -69,19 +69,18 @@ public class MainActivity extends AppCompatActivity {
                             infos = Toast.makeText(context, msg, duration);
                             infos.show();
                         }
-
                     }
                 }
         );
 
         fab.setOnClickListener(new View.OnClickListener() {
-                                   @Override
-                                   public void onClick(View view) {
-                                       Intent intent = new Intent(context, DisplayActivity.class);
-                                       intent.putExtra("airportCode", 0);
-                                        startActivity(intent);
-                                   }
-                               }
+               @Override
+               public void onClick(View view) {
+                   Intent intent = new Intent(context, DisplayActivity.class);
+                   intent.putExtra("airportCode", 0);
+                    startActivity(intent);
+               }
+           }
         );
 
     }
