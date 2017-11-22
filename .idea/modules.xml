@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/SnowTamProject.iml" filepath="$PROJECT_DIR$/SnowTamProject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SnowTamAndroid.iml" filepath="$PROJECT_DIR$/SnowTamAndroid.iml" />
+      <module fileurl="file://D:\Documents\Cours\Android\SnowTamAndroid\SnowTamProject.iml" filepath="D:\Documents\Cours\Android\SnowTamAndroid\SnowTamProject.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
