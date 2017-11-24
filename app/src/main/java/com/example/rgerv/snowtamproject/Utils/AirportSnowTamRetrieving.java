@@ -25,6 +25,13 @@ public class AirportSnowTamRetrieving {
 
     }
 
+    /**
+     * Create a request to the API to get the airport last snowtam
+     * @param airportCode : ICAO code of the airport you want the last snowtam
+     * @param context : context of the calling view
+     * @param responseListener : listener launched when the request is finish. Typically, what is wanted to do with the data retrieved
+     * @param errorListener : listener launched is an error occur during the request
+     */
     public void RetrieveInformation(String airportCode, Context context, Response.Listener responseListener, Response.ErrorListener errorListener){
         RequestQueue queue = Volley.newRequestQueue(context);
         String ApiKey = "f08b79d0-ca26-11e7-b99a-fde72d126a17";

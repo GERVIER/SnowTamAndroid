@@ -4,4 +4,55 @@
     <string name="title_activity_display">DisplayActivity</string>
     <string name="lMenu_display_hide">Display/hide</string>
     <string name="add_airport_code">Search new airport code</string>
+
+    <string name="no_aiport_added">Please add a least one airport to the list</string>
+
+    <!-- String used of the snowtam decoding -->
+    <!--Zone Name -->
+    <string name="parsing_date_error"> Error parsing date</string>
+    <string name="runway">C) RUNWAY </string>
+    <string name="cleared_runway_length">D) CLEARED RUNWAY LENGTH</string>
+    <string name="cleared_runway_width">E) CLEARED RUNWAY WIDTH</string>
+    <string name="mean_depth">G) MEAN DEPTH </string>
+    <string name="braking_action">H) BRAKING ACTION </string>
+    <!--Generic string-->
+    <string name="threshold">Threshold : </string>
+    <string name="mid_runway">Mid runway : </string>
+    <string name="roll_out">Roll out : </string>
+    <!-- F information string -->
+    <string name="clear_and_dry">CLEAR AND DRY</string>
+    <string name="damp"> DAMP</string>
+    <string name="wet"> WET or WATER PATCHES</string>
+    <string name="rime"> RIME OR FROST COVERED</string>
+    <string name="dry_snow"> DRY SNOW</string>
+    <string name="wet_snow"> WET SNOW</string>
+    <string name="slush"> SLUSH</string>
+    <string name="ice"> ICE</string>
+    <string name="compacted_snow"> COMPACTED OR ROLLED SNOW</string>
+    <string name="frozen_ruts"> FROZEN RUTS OR RIDGES</string>
+    <!-- H information string -->
+    <string name="good"> Good</string>
+    <string name="medium_good"> Medium to Good</string>
+    <string name="medium"> Medium</string>
+    <string name="medium_poor"> Medium to Poor</string>
+    <string name="poor"> Poor</string>
+    <string name="condition_not_suitable"> Condition not suitable for precise readings</string>
+
+    <string name="BRD">Brakemeter-Dynometer</string>
+    <string name="GRT">Grip tester</string>
+    <string name="MUM">Mu-meter</string>
+    <string name="RFT">Runway friction tester</string>
+    <string name="SFH">Surface friction tester (high-pressure tire)</string>
+    <string name="SFL">Surface friction tester (low-pressure tire)</string>
+    <string name="SKH">Skiddometer (high-pressure tire)</string>
+    <string name="SKL">Skiddometer (low-pressure tire)</string>
+    <string name="TAP">Tapley meter</string>
+
+
+
+
+
+
+
+
 </resources>

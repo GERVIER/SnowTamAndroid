@@ -4,26 +4,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.text.Layout;
 import android.util.Log;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.ViewParent;
-import android.view.Window;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.example.rgerv.snowtamproject.Model.AirportList;
 import com.example.rgerv.snowtamproject.Model.Airport;
+import com.example.rgerv.snowtamproject.Model.AirportList;
 import com.example.rgerv.snowtamproject.Model.SnowTam;
 import com.example.rgerv.snowtamproject.Utils.AirportInfoRetrieving;
 import com.example.rgerv.snowtamproject.Utils.AirportSnowTamRetrieving;
@@ -57,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         layout =  findViewById(R.id.layout2);
         fab = findViewById(R.id.floatingActionButton);
 
+
         validate.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -76,9 +70,14 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
                @Override
                public void onClick(View view) {
-                   Intent intent = new Intent(context, DisplayActivity.class);
-                   intent.putExtra("airportCode", 0);
-                    startActivity(intent);
+                   if(AirportList.getInstance().getAirportList().size()>0) {
+                       Intent intent = new Intent(context, DisplayActivity.class);
+                       intent.putExtra("airportCode", 0);
+                       startActivity(intent);
+                   }
+                   else{
+                       Toast.makeText(context ,context.getString(R.string.no_aiport_added), Toast.LENGTH_SHORT).show();
+                   }
                }
            }
         );
@@ -86,7 +85,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void searchAirportLocation(){
-        //TODO LINK WITH THE LIST OF AIRPORT.
         Response.Listener<JSONArray> responseListener = new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -150,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
                     Log.d(DebugTag, "Coded: " + code);
                     Airport airport = AirportList.getInstance().getAirportList().get(airportIndex);
                     SnowTam snowtam = new SnowTam(code);
-                    snowtam.decodeSnowTam(airport.getLocation());
+                    snowtam.decodeSnowTam(airport.getLocation(), context);
                     airport.setSnowtam(snowtam);
                     Log.d(DebugTag, "Decoded: \n" + airport.getSnowtam().getDecodedSnowTam());
                 }
