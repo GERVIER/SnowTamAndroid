@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         context = this;
         duration = Toast.LENGTH_LONG;
-
+        AirportList.getInstance().resetAirportList();
 
         searchCode =  findViewById(R.id.search_code);
         validate =  findViewById(R.id.validate);

@@ -30,4 +30,7 @@ public class AirportList {
         this.airportList = airportList;
     }
 
+    public void resetAirportList(){
+        airportList.clear();
+    }
 }

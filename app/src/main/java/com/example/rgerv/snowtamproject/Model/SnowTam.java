@@ -91,6 +91,7 @@ public class SnowTam {
 
             if(carac.equals("C)")){
                 int runWayNumber = Integer.parseInt(caracs[j+1]);
+                sb.append("\n\n");
                 sb.append(context.getString(R.string.runway));
                 if(runWayNumber<36){
                     sb.append(runWayNumber);
@@ -115,7 +116,7 @@ public class SnowTam {
 
             if(carac.equals("F)")){
                 sb.append(analyseFdata(caracs[j+1], context));
-                sb.append(" ");
+                sb.append("\n");
             }
 
             if(carac.equals("G)")){
@@ -129,6 +130,7 @@ public class SnowTam {
                 }catch (ArrayIndexOutOfBoundsException e){
                     sb.append(analyseHdata(context, caracs[j+1]));
                 }
+                sb.append("\n");
             }
 
         }
@@ -259,7 +261,7 @@ public class SnowTam {
     private String analyseHdata(Context context, String... carac){
         StringBuilder sb = new StringBuilder();
         sb.append(context.getString(R.string.braking_action));
-
+        sb.append(" ");
         String[] conditions = carac[0].split("/");
         for(int i = 0; i<conditions.length; i++){
             String condition = conditions[i];
