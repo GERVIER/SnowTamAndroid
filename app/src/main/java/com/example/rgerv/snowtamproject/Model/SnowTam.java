@@ -18,8 +18,8 @@ public class SnowTam {
 
     public SnowTam(String codedSnowTam){
         this.codedSnowTam = codedSnowTam;
+        this.decodedSnowTam = codedSnowTam;
     }
-
 
     public String getCodedSnowTam() {
         return codedSnowTam;
@@ -54,6 +54,16 @@ public class SnowTam {
         }
 
         decodedSnowTam = sb.toString();
+        decodedSnowTam +=  analyseJdata(context, "30/5L") + "\n";
+        decodedSnowTam +=  analyseJdata(context, "30/5LR") + "\n";
+        decodedSnowTam +=  analyseJdata(context, "30/5R") + "\n";
+
+        decodedSnowTam +=  analyseKdata(context, "YES", "L") + "\n";
+        decodedSnowTam +=  analyseKdata(context, "YES", "LR") + "\n";
+
+        decodedSnowTam +=  analyseLdata(context, "1200/30") + "\n";
+
+
     }
 
     /**
@@ -80,18 +90,18 @@ public class SnowTam {
             if(carac.equals("B)")){
                 String timeCode = caracs[j+1];
                 SimpleDateFormat formatter = new SimpleDateFormat("MMddHHmm");
+                sb.append("\n\n");
+                sb.append("B) ");
                 try{
-                    sb.append("B) ");
                     sb.append(formatter.parse(timeCode));
-                    sb.append(" ");
                 }catch (Exception e){
                     sb.append(context.getString(R.string.parsing_date_error));
                 }
+                sb.append("\n");
             }
 
             if(carac.equals("C)")){
                 int runWayNumber = Integer.parseInt(caracs[j+1]);
-                sb.append("\n\n");
                 sb.append(context.getString(R.string.runway));
                 if(runWayNumber<36){
                     sb.append(runWayNumber);
@@ -133,6 +143,20 @@ public class SnowTam {
                 sb.append("\n");
             }
 
+            if (carac.equals("J)")){
+                sb.append(analyseJdata(context, caracs[j+1]));
+                sb.append("\n");
+            }
+
+            if (carac.equals("K)")){
+                sb.append(analyseKdata(context, caracs[j+1], caracs[j+2]));
+                sb.append("\n");
+            }
+
+            if (carac.equals("L)")){
+                sb.append(analyseLdata(context, caracs[j+1]));
+                sb.append("\n");
+            }
         }
 
         return sb.toString();
@@ -337,6 +361,109 @@ public class SnowTam {
                     break;
             }
         }
+        return sb.toString();
+    }
+
+    /**
+     * decode the data of the J group
+     * @param context of the calling activity
+     * @param carac the group to decode
+     * @return the decoded line
+     */
+    private String analyseJdata(Context context, String carac){
+        StringBuilder sb = new StringBuilder();
+        sb.append("J) ");
+        sb.append(context.getString(R.string.critical_snow_bank));
+        String[] detailedCarac = carac.split("/");
+        String distance = detailedCarac[1];
+
+
+        distance = distance.replace("L", "");
+        distance = distance.replace("R", "");
+        distance = distance.replace("LR", "");
+
+        sb.append(" ");
+        sb.append(detailedCarac[0]);
+        sb.append("cm / ");
+        sb.append(distance);
+        sb.append("m ");
+        if(detailedCarac[1].contains("LR")){
+           sb.append(context.getString(R.string.left_right));
+        }
+        else{
+            if (detailedCarac[1].contains("R")){
+                sb.append(context.getString(R.string.right));
+            }
+            else{
+                sb.append(context.getString(R.string.left));
+            }
+        }
+
+        return sb.toString();
+    }
+
+    /**
+     * decode the data of the K group
+     * @param context of the calling activity
+     * @param carac the group to decode
+     * @param where L, R, or LR
+     * @return the decoded line
+     */
+    private String analyseKdata(Context context, String carac, String where){
+        StringBuilder sb = new StringBuilder();
+
+        if(carac.contains("YES")){
+            sb.append("K) ");
+            sb.append(context.getString(R.string.lights_obscured));
+
+            if(where.contains("LR")){
+                sb.append(context.getString(R.string.left_right));
+            }
+            else{
+                if (where.contains("R")){
+                    sb.append(context.getString(R.string.right));
+                }
+                else{
+                    sb.append(context.getString(R.string.left));
+                }
+            }
+        }
+
+        return sb.toString();
+    }
+
+
+    /**
+     * decode the data of the L group
+     * @param context of the calling activity
+     * @param carac the group to decode
+     * @return the decoded line
+     */
+    private String analyseLdata(Context context, String carac){
+        StringBuilder sb = new StringBuilder();
+        sb.append("L) ");
+        sb.append(context.getString(R.string.further_clearance));
+        sb.append(" ");
+
+        String[] details = carac.split("/");
+        sb.append(details[0]);
+        sb.append("m / ");
+        sb.append(details[1]);
+        sb.append("m ");
+
+        return sb.toString();
+    }
+
+    /**
+     * decode the data of the   group
+     * @param context of the calling activity
+     * @param carac the group to decode
+     * @return the decoded line
+     */
+    private String analysedata(Context context, String carac){
+        StringBuilder sb = new StringBuilder();
+        sb.append("J) ");
+
         return sb.toString();
     }
 }

@@ -1,5 +1,6 @@
 package com.example.rgerv.snowtamproject;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     int duration;
     LinearLayout layout;
     private String DebugTag = "Debug-MainActivity";
+    ProgressDialog dialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,19 +85,26 @@ public class MainActivity extends AppCompatActivity {
            }
         );
 
+        dialog = ProgressDialog.show(context, "",
+                getString(R.string.searching_airport), true);
+        dialog.hide();
+
     }
 
     public void searchAirportLocation(){
+        dialog.show();
         Response.Listener<JSONArray> responseListener = new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 try{
                     if(response.length() == 0){
                         Log.d(DebugTag, "No airport Found");
+                        dialog.hide();
                         //affichage d'un message pour l'utilisateur
                         msg = getString(R.string.incorrect_code);
                         infos = Toast.makeText(context, msg, duration);
                         infos.show();
+
                     }
                     else{
                         JSONObject airport = response.getJSONObject(0);
@@ -137,6 +146,7 @@ public class MainActivity extends AppCompatActivity {
                     try{
                         code = response.getJSONObject(i).getString("all");
                         if(code.contains("SNOWTAM")){
+                            Log.d(DebugTag, "Code: " + code+"\n\n");
                             isSnowTamExisting = true;
                             break;
                         }
@@ -145,14 +155,19 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
 
+                Airport airport = AirportList.getInstance().getAirportList().get(airportIndex);
+                SnowTam snowtam;
                 if(isSnowTamExisting){
                     Log.d(DebugTag, "Coded: " + code);
-                    Airport airport = AirportList.getInstance().getAirportList().get(airportIndex);
-                    SnowTam snowtam = new SnowTam(code);
+                    snowtam = new SnowTam(code);
                     snowtam.decodeSnowTam(airport.getLocation(), context);
-                    airport.setSnowtam(snowtam);
-                    Log.d(DebugTag, "Decoded: \n" + airport.getSnowtam().getDecodedSnowTam());
+                    Log.d(DebugTag, "Decoded: \n" + snowtam.getDecodedSnowTam());
                 }
+                else{
+                    snowtam = new SnowTam(context.getString(R.string.no_snowtam));
+                }
+                airport.setSnowtam(snowtam);
+                dialog.hide();
             }
         };
 
