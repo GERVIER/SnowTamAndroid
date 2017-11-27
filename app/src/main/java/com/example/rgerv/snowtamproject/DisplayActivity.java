@@ -1,6 +1,7 @@
 package com.example.rgerv.snowtamproject;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -66,6 +67,7 @@ public class DisplayActivity extends AppCompatActivity {
     CharSequence msg;
     Toast infos ;
     LinearLayout layout;
+    ProgressDialog dialog;
 
     public static Activity display_activity;
     public static int currentId;
@@ -136,7 +138,9 @@ public class DisplayActivity extends AppCompatActivity {
             }
         });
         setTitle(airportList.get(aiportDisplayId).getLocation());
-
+        dialog = ProgressDialog.show(context, "",
+                getString(R.string.searching_airport), true);
+        dialog.hide();
 
         dValidate.setOnClickListener(
                 new View.OnClickListener() {
@@ -158,12 +162,14 @@ public class DisplayActivity extends AppCompatActivity {
 
     public void searchAirportLocation(){
         //TODO LINK WITH THE LIST OF AIRPORT.
+        dialog.show();
         Response.Listener<JSONArray> responseListener = new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 try{
                     if(response.length() == 0){
                         Log.d(DebugTag, "No airport Found");
+                        dialog.hide();
                         //affichage d'un message pour l'utilisateur
                         msg = getString(R.string.incorrect_code);
                         infos = Toast.makeText(context, msg, duration);
@@ -226,6 +232,7 @@ public class DisplayActivity extends AppCompatActivity {
                     airport.setSnowtam(snowtam);
                     Log.d(DebugTag, "Decoded: \n" + airport.getSnowtam().getDecodedSnowTam());
                 }
+                dialog.hide();
             }
         };
 
