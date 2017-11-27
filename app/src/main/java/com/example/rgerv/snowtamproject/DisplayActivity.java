@@ -240,6 +240,7 @@ public class DisplayActivity extends AppCompatActivity {
                     snowtam = new SnowTam(context.getString(R.string.no_snowtam));
                 }
                 airport.setSnowtam(snowtam);
+                dialog.hide();
             }
         };
 
