@@ -94,6 +94,17 @@ public class MainActivity extends AppCompatActivity {
                 getString(R.string.searching_airport), true);
         dialog.hide();
 
+
+
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        layout.removeAllViews();
+        for(Airport a: AirportList.getInstance().getAirportList()) {
+            layout.addView(addCde(a.getIcaoCode() + " " + a.getStateName()));
+        }
     }
 
     public void searchAirportLocation(){
