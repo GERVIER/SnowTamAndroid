@@ -97,7 +97,6 @@ public class DisplayActivity extends AppCompatActivity {
         airportList = AirportList.getInstance().getAirportList();
         airportNameDisplay.setText(airportList.get(aiportDisplayId).getSnowtam().getDecodedSnowTam());
         codeShowed = codeType.DECODED;
-        airportNameDisplay.setText(airportList.get(aiportDisplayId).getIcaoCode());
         drawerItem = new ArrayList<>();
 
         for(int i = 0; i< airportList.size(); i++){
@@ -223,7 +222,7 @@ public class DisplayActivity extends AppCompatActivity {
                     Log.d(DebugTag, "Coded: " + code);
                     Airport airport = AirportList.getInstance().getAirportList().get(airportIndex);
                     SnowTam snowtam = new SnowTam(code);
-                    snowtam.decodeSnowTam(airport.getLocation());
+                    snowtam.decodeSnowTam(airport.getLocation(), context );
                     airport.setSnowtam(snowtam);
                     Log.d(DebugTag, "Decoded: \n" + airport.getSnowtam().getDecodedSnowTam());
                 }
