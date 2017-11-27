@@ -10,6 +10,7 @@
     <string name="searching_airport">Adding the airport... </string>
 
     <!-- String used of the snowtam decoding -->
+    <string name="error_analyse">Error during analyse\n</string>
     <!--Zone Name -->
     <string translatable="false" name="parsing_date_error"> Error parsing date</string>
     <string translatable="false" name="runway">C) RUNWAY </string>
@@ -51,19 +52,31 @@
     <string translatable="false" name="TAP">Tapley meter</string>
 
     <!-- J information string -->
-
     <string translatable="false" name="critical_snow_bank">CRITICAL SNOW BANK</string>
     <string translatable="false" name="left">LEFT of Runway</string>
     <string translatable="false" name="right">RIGHT of Runway</string>
     <string translatable="false" name="left_right">LEFT and RIGHT of Runway</string>
 
     <!-- K information string -->
-
     <string translatable="false" name="yes">YES</string>
     <string translatable="false" name="lights_obscured">Lights obscured :</string>
-
 
     <!-- L information string -->
     <string translatable="false" name="further_clearance">FURTHER CLEARANCE</string>
 
+    <!-- M information string -->
+    <string translatable="false" name="anticipated_time_completion">Anticipated time of completion</string>
+
+    <!-- N information string -->
+    <string translatable="false" name="taxiway">Taxiway</string>
+    <string translatable="false" name="taxiway_none">None of Taxiway usable</string>
+
+    <!-- P information string -->
+    <string translatable="false" name="snow_bank">Snow Banks</string>
+    <string translatable="false" name="space">Space</string>
+    
+    <string name="parking">Parking </string>
+    <string name="unusable">UNUSABLE </string>
+    
+    <string name="next_obs">NEXT OBSERVATION</string>
 </resources>

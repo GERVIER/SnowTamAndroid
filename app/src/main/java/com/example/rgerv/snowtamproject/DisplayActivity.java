@@ -96,6 +96,7 @@ public class DisplayActivity extends AppCompatActivity {
                 }
             }
         });
+        setTitle(airportList.get(aiportDisplayId).getLocation());
     }
 
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
