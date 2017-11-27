@@ -12,71 +12,74 @@
     <!-- String used of the snowtam decoding -->
     <string name="error_analyse">Error during analyse\n</string>
     <!--Zone Name -->
-    <string translatable="false" name="parsing_date_error"> Error parsing date</string>
-    <string translatable="false" name="runway">C) RUNWAY </string>
-    <string translatable="false" name="cleared_runway_length">D) CLEARED RUNWAY LENGTH</string>
-    <string translatable="false" name="cleared_runway_width">E) CLEARED RUNWAY WIDTH</string>
-    <string translatable="false" name="mean_depth">G) MEAN DEPTH </string>
-    <string translatable="false" name="braking_action">H) BRAKING ACTION </string>
+    <string name="parsing_date_error" translatable="false"> Error parsing date</string>
+    <string name="runway" translatable="false">C) RUNWAY </string>
+    <string name="cleared_runway_length" translatable="false">D) CLEARED RUNWAY LENGTH</string>
+    <string name="cleared_runway_width" translatable="false">E) CLEARED RUNWAY WIDTH</string>
+    <string name="mean_depth" translatable="false">G) MEAN DEPTH </string>
+    <string name="braking_action" translatable="false">H) BRAKING ACTION </string>
     <!--Generic string-->
-    <string translatable="false" name="threshold">Threshold : </string>
-    <string translatable="false" name="mid_runway">Mid runway : </string>
-    <string translatable="false" name="roll_out">Roll out : </string>
+    <string name="threshold" translatable="false">Threshold : </string>
+    <string name="mid_runway" translatable="false">Mid runway : </string>
+    <string name="roll_out" translatable="false">Roll out : </string>
     <!-- F information string -->
-    <string translatable="false" name="clear_and_dry">CLEAR AND DRY</string>
-    <string translatable="false" name="damp"> DAMP</string>
-    <string translatable="false" name="wet"> WET or WATER PATCHES</string>
-    <string translatable="false" name="rime"> RIME OR FROST COVERED</string>
-    <string translatable="false" name="dry_snow"> DRY SNOW</string>
-    <string translatable="false" name="wet_snow"> WET SNOW</string>
-    <string translatable="false" name="slush"> SLUSH</string>
-    <string translatable="false" name="ice"> ICE</string>
-    <string translatable="false" name="compacted_snow"> COMPACTED OR ROLLED SNOW</string>
-    <string translatable="false" name="frozen_ruts"> FROZEN RUTS OR RIDGES</string>
+    <string name="clear_and_dry" translatable="false">CLEAR AND DRY</string>
+    <string name="damp" translatable="false"> DAMP</string>
+    <string name="wet" translatable="false"> WET or WATER PATCHES</string>
+    <string name="rime" translatable="false"> RIME OR FROST COVERED</string>
+    <string name="dry_snow" translatable="false"> DRY SNOW</string>
+    <string name="wet_snow" translatable="false"> WET SNOW</string>
+    <string name="slush" translatable="false"> SLUSH</string>
+    <string name="ice" translatable="false"> ICE</string>
+    <string name="compacted_snow" translatable="false"> COMPACTED OR ROLLED SNOW</string>
+    <string name="frozen_ruts" translatable="false"> FROZEN RUTS OR RIDGES</string>
     <!-- H information string -->
-    <string translatable="false" name="good"> Good</string>
-    <string translatable="false" name="medium_good"> Medium to Good</string>
-    <string translatable="false" name="medium"> Medium</string>
-    <string translatable="false" name="medium_poor"> Medium to Poor</string>
-    <string translatable="false" name="poor"> Poor</string>
-    <string translatable="false" name="condition_not_suitable"> Condition not suitable for precise readings</string>
+    <string name="good" translatable="false"> Good</string>
+    <string name="medium_good" translatable="false"> Medium to Good</string>
+    <string name="medium" translatable="false"> Medium</string>
+    <string name="medium_poor" translatable="false"> Medium to Poor</string>
+    <string name="poor" translatable="false"> Poor</string>
+    <string name="condition_not_suitable" translatable="false"> Condition not suitable for precise readings</string>
 
-    <string translatable="false" name="BRD">Brakemeter-Dynometer</string>
-    <string translatable="false" name="GRT">Grip tester</string>
-    <string translatable="false" name="MUM">Mu-meter</string>
-    <string translatable="false" name="RFT">Runway friction tester</string>
-    <string translatable="false" name="SFH">Surface friction tester (high-pressure tire)</string>
-    <string translatable="false" name="SFL">Surface friction tester (low-pressure tire)</string>
-    <string translatable="false" name="SKH">Skiddometer (high-pressure tire)</string>
-    <string translatable="false" name="SKL">Skiddometer (low-pressure tire)</string>
-    <string translatable="false" name="TAP">Tapley meter</string>
+    <string name="BRD" translatable="false">Brakemeter-Dynometer</string>
+    <string name="GRT" translatable="false">Grip tester</string>
+    <string name="MUM" translatable="false">Mu-meter</string>
+    <string name="RFT" translatable="false">Runway friction tester</string>
+    <string name="SFH" translatable="false">Surface friction tester (high-pressure tire)</string>
+    <string name="SFL" translatable="false">Surface friction tester (low-pressure tire)</string>
+    <string name="SKH" translatable="false">Skiddometer (high-pressure tire)</string>
+    <string name="SKL" translatable="false">Skiddometer (low-pressure tire)</string>
+    <string name="TAP" translatable="false">Tapley meter</string>
 
     <!-- J information string -->
-    <string translatable="false" name="critical_snow_bank">CRITICAL SNOW BANK</string>
-    <string translatable="false" name="left">LEFT of Runway</string>
-    <string translatable="false" name="right">RIGHT of Runway</string>
-    <string translatable="false" name="left_right">LEFT and RIGHT of Runway</string>
+    <string name="critical_snow_bank" translatable="false">CRITICAL SNOW BANK</string>
+    <string name="left" translatable="false">LEFT of Runway</string>
+    <string name="right" translatable="false">RIGHT of Runway</string>
+    <string name="left_right" translatable="false">LEFT and RIGHT of Runway</string>
 
     <!-- K information string -->
-    <string translatable="false" name="yes">YES</string>
-    <string translatable="false" name="lights_obscured">Lights obscured :</string>
+    <string name="yes" translatable="false">YES</string>
+    <string name="lights_obscured" translatable="false">Lights obscured :</string>
 
     <!-- L information string -->
-    <string translatable="false" name="further_clearance">FURTHER CLEARANCE</string>
+    <string name="further_clearance" translatable="false">FURTHER CLEARANCE</string>
 
     <!-- M information string -->
-    <string translatable="false" name="anticipated_time_completion">Anticipated time of completion</string>
+    <string name="anticipated_time_completion" translatable="false">Anticipated time of completion</string>
 
     <!-- N information string -->
-    <string translatable="false" name="taxiway">Taxiway</string>
-    <string translatable="false" name="taxiway_none">None of Taxiway usable</string>
+    <string name="taxiway" translatable="false">Taxiway</string>
+    <string name="taxiway_none" translatable="false">None of Taxiway usable</string>
 
     <!-- P information string -->
-    <string translatable="false" name="snow_bank">Snow Banks</string>
-    <string translatable="false" name="space">Space</string>
-    
+    <string name="snow_bank" translatable="false">Snow Banks</string>
+    <string name="space" translatable="false">Space</string>
+
     <string name="parking">Parking </string>
     <string name="unusable">UNUSABLE </string>
-    
+
     <string name="next_obs">NEXT OBSERVATION</string>
+    <string name="infoscredit">CREATED BY :\n DELBECQUE Alice\n GERVIER Rémy \n SALIOU Élisabeth \n Project realised during the class of Embedded Applications taught by : \n LAGRANGE Frédéric. \n November 2017</string>
+    <string name="credit">Credits</string>
+
 </resources>

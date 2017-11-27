@@ -65,7 +65,7 @@ public class DisplayActivity extends AppCompatActivity {
     private TextView airportNameDisplay;
     public static ArrayList<ItemModel> drawerItem;
     public static DrawerItemAdapter adapter;
-
+    private FloatingActionButton creditbutton;
     private ImageButton dValidate;
     private EditText searchCode;
     private int duration;
@@ -97,6 +97,7 @@ public class DisplayActivity extends AppCompatActivity {
         buttonSwitch = findViewById(R.id.encryptedInfo);
         dValidate = findViewById(R.id.validate);
         searchCode = findViewById(R.id.search_code);
+        creditbutton = findViewById(R.id.fab_info);
 
         setupToolbar();
 
@@ -172,6 +173,14 @@ public class DisplayActivity extends AppCompatActivity {
                     }
                 }
         );
+
+        creditbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, CreditActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public void searchAirportLocation(){
