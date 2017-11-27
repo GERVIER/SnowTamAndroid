@@ -40,7 +40,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_weight="3"
                 android:hint="Code"
-                android:inputType="textPersonName" />
+                android:inputType="textFilter" />
 
             <ImageButton
                 android:id="@+id/validate"
@@ -50,7 +50,7 @@
                 android:layout_marginEnd="20dp"
                 android:layout_marginStart="5dp"
                 android:background="@color/transparent"
-                app:srcCompat="@drawable/ic_validate" />
+                app:srcCompat="@drawable/ic_search" />
 
         </LinearLayout>
 
@@ -85,7 +85,7 @@
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
         android:clickable="true"
-        app:srcCompat="@drawable/ic_search"
+        app:srcCompat="@drawable/ic_validate"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_gravity="end|bottom"

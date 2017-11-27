@@ -184,6 +184,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 airport.setSnowtam(snowtam);
                 dialog.hide();
+                searchCode.setText("");
             }
         };
 
@@ -212,6 +213,7 @@ public class MainActivity extends AppCompatActivity {
         final TextView airplane_code = new TextView(this);
         airplane_code.setLayoutParams(lparams);
         airplane_code.setText(s);
+        airplane_code.setTextSize(20);
         return airplane_code;
     }
 
@@ -219,7 +221,8 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton createNewButton(final LinearLayout l) {
         final ImageButton airplane_delete = new ImageButton(context);
         final LinearLayout.LayoutParams lparams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        airplane_delete.setImageResource(R.mipmap.ic_delete);
+        airplane_delete.setImageResource(R.drawable.ic_delete);
+        airplane_delete.setBackground(getDrawable(R.color.transparent));
         airplane_delete.setLayoutParams(lparams);
         airplane_delete.setPadding(0,0,0,0);
         airplane_delete.setBackgroundColor(getResources().getColor(R.color.transparent));

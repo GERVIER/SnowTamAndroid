@@ -2,6 +2,7 @@ package com.example.rgerv.snowtamproject.Model;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.example.rgerv.snowtamproject.R;
 
@@ -58,24 +59,6 @@ public class SnowTam {
         }
 
         decodedSnowTam = sb.toString();
-        decodedSnowTam +=  analyseJdata(context, "30/5L") + "\n";
-        decodedSnowTam +=  analyseJdata(context, "30/5LR") + "\n";
-        decodedSnowTam +=  analyseJdata(context, "30/5R") + "\n";
-
-        decodedSnowTam +=  analyseKdata(context, "YES", "L") + "\n";
-        decodedSnowTam +=  analyseKdata(context, "YES", "LR") + "\n";
-
-
-        decodedSnowTam +=  analyseLdata(context, "1200/30") + "\n";
-
-        decodedSnowTam +=  analyseMdata(context, "0030") + "\n";
-
-        decodedSnowTam +=  analyseNdata(context, "D4") + "\n";
-        decodedSnowTam +=  analyseNdata(context, "NO") + "\n";
-
-        decodedSnowTam +=  analysePdata(context, "YES20") + "\n";
-
-        decodedSnowTam +=  analyseKdata(context, "D", "NO") + "\n";
     }
 
     /**
@@ -229,8 +212,11 @@ public class SnowTam {
                 sb.append("\n");
             }
 
-            if (carac.equals("T) ")){
-                //String data = caracs[];
+            if (carac.equals("T)")){
+                String[] data = getCodedSnowTam().split("T[)]");
+                String[] tData = data[1].split("[)]");
+                sb.append("T) ");
+                sb.append(tData[0]);
             }
         }
 

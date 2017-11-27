@@ -33,6 +33,9 @@ import com.example.rgerv.snowtamproject.Model.ItemModel;
 import com.example.rgerv.snowtamproject.Model.SnowTam;
 import com.example.rgerv.snowtamproject.Utils.AirportInfoRetrieving;
 import com.example.rgerv.snowtamproject.Utils.AirportSnowTamRetrieving;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.OnMapReadyCallback;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -77,6 +80,7 @@ public class DisplayActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_display);
+
         display_activity = this;
         mTitle = mDrawerTitle = getTitle();
         aiportDisplayId = getIntent().getIntExtra("airportCode",0);
