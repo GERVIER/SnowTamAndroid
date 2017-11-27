@@ -79,7 +79,6 @@ public class SnowTam {
             if(carac.equals("A)")){
                 sb.append("A) ");
                 sb.append(airportLocation);
-                sb.append("\n");
             }
 
             if(carac.equals("B)")){
