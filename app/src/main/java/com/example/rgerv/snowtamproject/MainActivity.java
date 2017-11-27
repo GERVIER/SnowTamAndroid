@@ -1,6 +1,7 @@
 package com.example.rgerv.snowtamproject;
 
 import android.app.ProgressDialog;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -37,7 +38,10 @@ public class MainActivity extends AppCompatActivity {
     CharSequence msg;
     int duration;
     LinearLayout layout;
+    public static Activity main_activity; //Necessary to finish activity upon return from deleting all airports from DrawerItemAdapter
     private String DebugTag = "Debug-MainActivity";
+
+
     ProgressDialog dialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         //requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
         context = this;
+        main_activity = this;
         duration = Toast.LENGTH_LONG;
         AirportList.getInstance().resetAirportList();
 
