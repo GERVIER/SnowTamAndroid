@@ -1,30 +1,25 @@
 package com.example.rgerv.snowtamproject;
 
+import android.app.ProgressDialog;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.text.Layout;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.ViewParent;
-import android.view.Window;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.example.rgerv.snowtamproject.Model.AirportList;
 import com.example.rgerv.snowtamproject.Model.Airport;
+import com.example.rgerv.snowtamproject.Model.AirportList;
 import com.example.rgerv.snowtamproject.Model.SnowTam;
 import com.example.rgerv.snowtamproject.Utils.AirportInfoRetrieving;
 import com.example.rgerv.snowtamproject.Utils.AirportSnowTamRetrieving;
@@ -47,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private String DebugTag = "Debug-MainActivity";
 
 
+    ProgressDialog dialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,12 +51,13 @@ public class MainActivity extends AppCompatActivity {
         context = this;
         main_activity = this;
         duration = Toast.LENGTH_LONG;
+        AirportList.getInstance().resetAirportList();
 
-
-        searchCode = (EditText) findViewById(R.id.search_code);
-        validate = (ImageButton) findViewById(R.id.validate);
-        layout = (LinearLayout) findViewById(R.id.layout2);
+        searchCode =  findViewById(R.id.search_code);
+        validate =  findViewById(R.id.validate);
+        layout =  findViewById(R.id.layout2);
         fab = findViewById(R.id.floatingActionButton);
+
 
         validate.setOnClickListener(
                 new View.OnClickListener() {
@@ -74,35 +71,45 @@ public class MainActivity extends AppCompatActivity {
                             infos = Toast.makeText(context, msg, duration);
                             infos.show();
                         }
-
                     }
                 }
         );
 
         fab.setOnClickListener(new View.OnClickListener() {
-                                   @Override
-                                   public void onClick(View view) {
-                                       Intent intent = new Intent(context, DisplayActivity.class);
-                                       intent.putExtra("airportCode", 0);
-                                        startActivity(intent);
-                                   }
-                               }
+               @Override
+               public void onClick(View view) {
+                   if(AirportList.getInstance().getAirportList().size()>0) {
+                       Intent intent = new Intent(context, DisplayActivity.class);
+                       intent.putExtra("airportCode", 0);
+                       startActivity(intent);
+                   }
+                   else{
+                       Toast.makeText(context ,context.getString(R.string.no_aiport_added), Toast.LENGTH_SHORT).show();
+                   }
+               }
+           }
         );
+
+        dialog = ProgressDialog.show(context, "",
+                getString(R.string.searching_airport), true);
+        dialog.hide();
 
     }
 
     public void searchAirportLocation(){
-        //TODO LINK WITH THE LIST OF AIRPORT.
+        dialog.show();
         Response.Listener<JSONArray> responseListener = new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 try{
                     if(response.length() == 0){
                         Log.d(DebugTag, "No airport Found");
+                        dialog.hide();
                         //affichage d'un message pour l'utilisateur
                         msg = getString(R.string.incorrect_code);
                         infos = Toast.makeText(context, msg, duration);
                         infos.show();
+
                     }
                     else{
                         JSONObject airport = response.getJSONObject(0);
@@ -144,6 +151,7 @@ public class MainActivity extends AppCompatActivity {
                     try{
                         code = response.getJSONObject(i).getString("all");
                         if(code.contains("SNOWTAM")){
+                            Log.d(DebugTag, "Code: " + code+"\n\n");
                             isSnowTamExisting = true;
                             break;
                         }
@@ -152,14 +160,19 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
 
+                Airport airport = AirportList.getInstance().getAirportList().get(airportIndex);
+                SnowTam snowtam;
                 if(isSnowTamExisting){
                     Log.d(DebugTag, "Coded: " + code);
-                    Airport airport = AirportList.getInstance().getAirportList().get(airportIndex);
-                    SnowTam snowtam = new SnowTam(code);
-                    snowtam.decodeSnowTam(airport.getLocation());
-                    airport.setSnowtam(snowtam);
-                    Log.d(DebugTag, "Decoded: \n" + airport.getSnowtam().getDecodedSnowTam());
+                    snowtam = new SnowTam(code);
+                    snowtam.decodeSnowTam(airport.getLocation(), context);
+                    Log.d(DebugTag, "Decoded: \n" + snowtam.getDecodedSnowTam());
                 }
+                else{
+                    snowtam = new SnowTam(context.getString(R.string.no_snowtam));
+                }
+                airport.setSnowtam(snowtam);
+                dialog.hide();
             }
         };
 
@@ -179,6 +192,7 @@ public class MainActivity extends AppCompatActivity {
         l.setOrientation(LinearLayout.HORIZONTAL);
         l.addView(createNewTextView(s));
         l.addView(createNewButton(l));
+        l.setGravity(Gravity.CENTER);
         return l;
     }
 

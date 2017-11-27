@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/SnowTamAndroid.iml" filepath="$PROJECT_DIR$/.idea/SnowTamAndroid.iml" />
-      <module fileurl="file://C:\Users\Elisabeth\AndroidStudioProjects\SnowTamAndroid\SnowTamProject.iml" filepath="C:\Users\Elisabeth\AndroidStudioProjects\SnowTamAndroid\SnowTamProject.iml" />
+      <module fileurl="file://D:\rgerv\Documents\ENSIM\5A\Android\SnowTamProject\SnowTamAndroid.iml" filepath="D:\rgerv\Documents\ENSIM\5A\Android\SnowTamProject\SnowTamAndroid.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SnowTamProject.iml" filepath="$PROJECT_DIR$/SnowTamProject.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
