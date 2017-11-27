@@ -54,7 +54,6 @@
             android:src="@drawable/travel1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
         <ListView
             android:id="@+id/left_drawer"
             android:layout_width="match_parent"
@@ -62,17 +61,22 @@
             android:choiceMode="singleChoice"
             android:divider="@android:color/transparent"
             android:dividerHeight="0dp"
-            android:background="@color/drawerListBackG"
-            android:layout_below="@id/id_logo">
+            android:background="@color/drawerBackG"
+            android:layout_marginBottom="125dp"
+            android:layout_below="@id/id_logo"
+            >
 
         </ListView>
+
         <EditText
             android:id="@+id/search_code"
             android:layout_width="175dp"
             android:layout_height="wrap_content"
             android:layout_above="@id/fab_info"
             android:hint="Code"
-            android:inputType="textCapSentences" />
+            android:inputType="textCapSentences"
+            android:layout_centerHorizontal="true"
+            />
 
         <ImageButton
             android:id="@+id/validate"
@@ -81,7 +85,7 @@
             android:layout_toEndOf="@id/search_code"
             android:layout_alignTop="@id/search_code"
             android:background="#00000000"
-            app:srcCompat="@drawable/ic_validate"
+            app:srcCompat="@drawable/ic_search"
             android:contentDescription="TODO" />
 
         <android.support.design.widget.FloatingActionButton
