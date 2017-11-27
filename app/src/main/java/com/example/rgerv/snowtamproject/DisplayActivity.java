@@ -222,14 +222,18 @@ public class DisplayActivity extends AppCompatActivity {
                     }
                 }
 
+                Airport airport = AirportList.getInstance().getAirportList().get(airportIndex);
+                SnowTam snowtam;
                 if(isSnowTamExisting){
                     Log.d(DebugTag, "Coded: " + code);
-                    Airport airport = AirportList.getInstance().getAirportList().get(airportIndex);
-                    SnowTam snowtam = new SnowTam(code);
-                    snowtam.decodeSnowTam(airport.getLocation(), context );
-                    airport.setSnowtam(snowtam);
-                    Log.d(DebugTag, "Decoded: \n" + airport.getSnowtam().getDecodedSnowTam());
+                    snowtam = new SnowTam(code);
+                    snowtam.decodeSnowTam(airport.getLocation(), context);
+                    Log.d(DebugTag, "Decoded: \n" + snowtam.getDecodedSnowTam());
                 }
+                else{
+                    snowtam = new SnowTam(context.getString(R.string.no_snowtam));
+                }
+                airport.setSnowtam(snowtam);
             }
         };
 

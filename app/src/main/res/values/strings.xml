@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">SnowTamProject</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_display">DisplayActivity</string>
-    <string name="lMenu_display_hide">Display/hide</string>
+    <string name="title_activity_display" translatable="false">DisplayActivity</string>
+    <string name="lMenu_display_hide" translatable="false">Display/hide</string>
     <string name="add_airport_code">Search new airport code</string>
 
     <string name="no_aiport_added">Please add a least one airport to the list</string>
@@ -10,7 +10,7 @@
     <string name="searching_airport">Adding the airport... </string>
 
     <!-- String used of the snowtam decoding -->
-    <string name="error_analyse">Error during analyse\n</string>
+    <string name="error_analyse" translatable="false">Error during analyse\n</string>
     <!--Zone Name -->
     <string translatable="false" name="parsing_date_error"> Error parsing date</string>
     <string translatable="false" name="runway">C) RUNWAY </string>
@@ -75,8 +75,10 @@
     <string translatable="false" name="snow_bank">Snow Banks</string>
     <string translatable="false" name="space">Space</string>
     
-    <string name="parking">Parking </string>
-    <string name="unusable">UNUSABLE </string>
+    <string translatable="false" name="parking">Parking </string>
+    <string translatable="false" name="unusable">UNUSABLE </string>
     
-    <string name="next_obs">NEXT OBSERVATION</string>
+    <string translatable="false" name="next_obs">NEXT OBSERVATION</string>
+    <string name="code_missing">Please enter a code</string>
+    <string name="incorrect_code">The code doesn\'t exist</string>
 </resources>

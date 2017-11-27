@@ -9,4 +9,6 @@
     <string name="no_aiport_added">Veuillez ajouter au moins un aéroport à la liste.</string>
     <string name="no_snowtam">Aucun snowtam de detecté pour cet aéroport</string>
     <string name="searching_airport">Ajout en cours...</string>
+    <string name="add_airport_code">Chercher un nouvel aeroport</string>
+
 </resources>
