@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -20,9 +19,6 @@ import com.example.rgerv.snowtamproject.Model.ItemModel;
 import com.example.rgerv.snowtamproject.R;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import static com.example.rgerv.snowtamproject.R.color.colorAccent;
 
 /**
  * Created by Elisabeth on 20/11/2017.

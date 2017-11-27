@@ -2,15 +2,11 @@ package com.example.rgerv.snowtamproject.Model;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import com.example.rgerv.snowtamproject.R;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
-import java.util.Locale;
 
 /**
  * Created by rgerv on 21/11/2017.
@@ -585,19 +581,6 @@ public class SnowTam {
         else{
             sb.append(analyseRunwayCondition(context, condition));
         }
-        return sb.toString();
-    }
-
-    /**
-     * decode the data of the  group
-     * @param context of the calling activity
-     * @param carac the group to decode
-     * @return the decoded line
-     */
-    private String analysedata(Context context, String carac){
-        StringBuilder sb = new StringBuilder();
-        sb.append("J) ");
-
         return sb.toString();
     }
 

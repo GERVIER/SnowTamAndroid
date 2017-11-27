@@ -5,7 +5,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -14,13 +13,10 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.QuickContactBadge;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,9 +30,6 @@ import com.example.rgerv.snowtamproject.Model.ItemModel;
 import com.example.rgerv.snowtamproject.Model.SnowTam;
 import com.example.rgerv.snowtamproject.Utils.AirportInfoRetrieving;
 import com.example.rgerv.snowtamproject.Utils.AirportSnowTamRetrieving;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
-import com.google.android.gms.maps.OnMapReadyCallback;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -164,8 +157,11 @@ public class DisplayActivity extends AppCompatActivity {
         );
     }
 
+    /**
+     * Search an airport by using it's ICAO code and add it to list if it exist.
+     * Show an error message if no airport is find
+     */
     public void searchAirportLocation(){
-        //TODO LINK WITH THE LIST OF AIRPORT.
         dialog.show();
         Response.Listener<JSONArray> responseListener = new Response.Listener<JSONArray>() {
             @Override
@@ -209,6 +205,11 @@ public class DisplayActivity extends AppCompatActivity {
         AirportInfoRetrieving.RetrieveInformation(searchCode.getText().toString().trim(), this, responseListener, errorListener);
     }
 
+    /**
+     * search a snowTam and add it to the airport corresponding to the specified index.
+     * If no snowtam is found, it add a string specifying it.
+     * @param airportIndex index in the airport list corresponding to the airport wanted.
+     */
     public void searchSnowTam(final int airportIndex){
         Airport airport = AirportList.getInstance().getAirportList().get(airportIndex);
         Response.Listener<JSONArray> responseListener = new Response.Listener<JSONArray>() {
