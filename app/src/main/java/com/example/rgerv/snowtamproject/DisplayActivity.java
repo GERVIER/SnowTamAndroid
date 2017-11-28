@@ -30,6 +30,12 @@ import com.example.rgerv.snowtamproject.Model.ItemModel;
 import com.example.rgerv.snowtamproject.Model.SnowTam;
 import com.example.rgerv.snowtamproject.Utils.AirportInfoRetrieving;
 import com.example.rgerv.snowtamproject.Utils.AirportSnowTamRetrieving;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -56,7 +62,7 @@ public class DisplayActivity extends AppCompatActivity {
     private TextView airportNameDisplay;
     public static ArrayList<ItemModel> drawerItem;
     public static DrawerItemAdapter adapter;
-
+    private FloatingActionButton creditbutton;
     private ImageButton dValidate;
     private EditText searchCode;
     private int duration;
@@ -90,6 +96,7 @@ public class DisplayActivity extends AppCompatActivity {
         buttonSwitch = findViewById(R.id.encryptedInfo);
         dValidate = findViewById(R.id.validate);
         searchCode = findViewById(R.id.search_code);
+        creditbutton = findViewById(R.id.fab_info);
 
         setupToolbar();
 
@@ -112,6 +119,18 @@ public class DisplayActivity extends AppCompatActivity {
         setupDrawerToggle();
         mDrawerLayout.addDrawerListener(mDrawerToggle);
 
+        MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
+        mapFragment.getMapAsync(new OnMapReadyCallback() {
+            @Override
+            public void onMapReady(GoogleMap googleMap) {
+                LatLng latLng = new LatLng(airportList.get(aiportDisplayId).getLatitude(),airportList.get(aiportDisplayId).getLongitude());
+                googleMap.addMarker(new MarkerOptions().position(latLng).title(airportList.get(aiportDisplayId).getLocation()));
+                googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+                googleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+                googleMap.setMaxZoomPreference(40);
+                googleMap.setMinZoomPreference(15);
+            }
+        });
         buttonSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -155,6 +174,14 @@ public class DisplayActivity extends AppCompatActivity {
                     }
                 }
         );
+
+        creditbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, CreditActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     /**

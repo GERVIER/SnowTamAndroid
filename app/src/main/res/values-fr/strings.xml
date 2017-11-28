@@ -9,6 +9,6 @@
     <string name="no_aiport_added">Veuillez ajouter au moins un aéroport à la liste.</string>
     <string name="no_snowtam">Aucun snowtam de detecté pour cet aéroport</string>
     <string name="searching_airport">Ajout en cours...</string>
-    <string name="add_airport_code">Chercher un nouvel aeroport</string>
-
+    <string name="infoscredit">Application conçue par :\n DELBECQUE Alice\n GERVIER Rémy \n SALIOU Élisabeth \n Projet réalisé au sein du cours Applications et Interfaces embarquées de : \n LAGRANGE Frédéric. \n Novembre 2017</string>
+    <string name="credit">Crédits</string>
 </resources>

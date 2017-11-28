@@ -77,8 +77,18 @@
     
     <string translatable="false" name="parking">Parking </string>
     <string translatable="false" name="unusable">UNUSABLE </string>
-    
+
     <string translatable="false" name="next_obs">NEXT OBSERVATION</string>
     <string name="code_missing">Please enter a code</string>
     <string name="incorrect_code">The code doesn\'t exist</string>
+    <string name="snow_bank" translatable="false">Snow Banks</string>
+    <string name="space" translatable="false">Space</string>
+
+    <string name="parking">Parking </string>
+    <string name="unusable">UNUSABLE </string>
+
+    <string name="next_obs">NEXT OBSERVATION</string>
+    <string name="infoscredit">CREATED BY :\n DELBECQUE Alice\n GERVIER Rémy \n SALIOU Élisabeth \n Project realised during the class of Embedded Applications taught by : \n LAGRANGE Frédéric. \n November 2017</string>
+    <string name="credit">Credits</string>
+
 </resources>
