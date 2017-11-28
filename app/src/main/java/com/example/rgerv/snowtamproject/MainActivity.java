@@ -30,7 +30,7 @@ import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
 
-    FloatingActionButton fab;
+    FloatingActionButton fab; //floating button corresponding to the search request
     ImageButton validate;
     EditText searchCode;
     Toast infos ;
@@ -63,10 +63,12 @@ public class MainActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        //we check if there is something in the edit text
                         if (!searchCode.getText().toString().equals("")) {
                             //we have to check the airplane's existence
                             searchAirportLocation();
                         } else {
+                            //if the edit text is empty, we show a toast
                             msg = getString(R.string.code_missing);
                             infos = Toast.makeText(context, msg, duration);
                             infos.show();
@@ -78,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
                @Override
                public void onClick(View view) {
+                   //we check if the airport list isn't empty before change activity
                    if(AirportList.getInstance().getAirportList().size()>0) {
                        Intent intent = new Intent(context, DisplayActivity.class);
                        intent.putExtra("airportCode", 0);
@@ -120,10 +123,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONArray response) {
                 try{
+                    //check the existence of the airport
                     if(response.length() == 0){
                         Log.d(DebugTag, "No airport Found");
                         dialog.hide();
-                        //affichage d'un message pour l'utilisateur
+                        //show a toast for the user if the airport isn't found
                         msg = getString(R.string.incorrect_code);
                         infos = Toast.makeText(context, msg, duration);
                         infos.show();
@@ -210,6 +214,10 @@ public class MainActivity extends AppCompatActivity {
         AirportSnowTamRetrieving.getInstance().RetrieveInformation(airport.getIcaoCode(),this,  responseListener, errorListener);
     }
 
+
+    /**
+     * Called when the user add a new code. This function creates a new linear layout and calls two other functions adding a text view and a button
+     * */
     private LinearLayout addCde(String s){
         final LinearLayout l = new LinearLayout(context);
         l.setOrientation(LinearLayout.HORIZONTAL);
@@ -219,6 +227,12 @@ public class MainActivity extends AppCompatActivity {
         return l;
     }
 
+
+    /**
+     * Called by the precedent function.
+     * This function add a text view to the linear layout.
+     * The text view contains the code given by the user
+     * */
     private TextView createNewTextView(String s) {
         final LinearLayout.LayoutParams lparams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT,3);
         final TextView airplane_code = new TextView(this);
@@ -228,7 +242,10 @@ public class MainActivity extends AppCompatActivity {
         return airplane_code;
     }
 
-
+    /**
+     * Called after the precedent function
+     * add a button to delete the code corresponding if the user wants to remove it
+     * */
     private ImageButton createNewButton(final LinearLayout l) {
         final ImageButton airplane_delete = new ImageButton(context);
         final LinearLayout.LayoutParams lparams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);

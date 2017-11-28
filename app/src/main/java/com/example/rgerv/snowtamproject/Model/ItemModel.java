@@ -1,8 +1,7 @@
 package com.example.rgerv.snowtamproject.Model;
 
-/**
- * Created by Elisabeth on 20/11/2017.
- * Defines the objects for the Drawer list of items
+/**Created by Elisabeth on 20/11/2017.
+ * Buffer class which defines the objects for the Drawer's listView
  */
 
 public class ItemModel {

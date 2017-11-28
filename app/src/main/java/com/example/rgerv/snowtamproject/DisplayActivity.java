@@ -60,7 +60,7 @@ public class DisplayActivity extends AppCompatActivity {
     private RelativeLayout drawerContainer;
     private List<Airport> airportList;
     private TextView airportNameDisplay;
-    public static ArrayList<ItemModel> drawerItem;
+    public static ArrayList<ItemModel> drawerItem; //list of icao codes from airport list, to fill drawer listView
     public static DrawerItemAdapter adapter;
     private FloatingActionButton creditbutton;
     private ImageButton dValidate;
@@ -72,7 +72,7 @@ public class DisplayActivity extends AppCompatActivity {
     ProgressDialog dialog;
 
     public static Activity display_activity;
-    public static int currentId;
+    public static int currentId; //id of currently displayed item of the airport list
 
     private String DebugTag = "Debug-DisplayActivity";
 
@@ -119,13 +119,17 @@ public class DisplayActivity extends AppCompatActivity {
         setupDrawerToggle();
         mDrawerLayout.addDrawerListener(mDrawerToggle);
 
+        //fragment corresponding of the map.
         MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(GoogleMap googleMap) {
+                //we implement the latitude and longitude with data indicated on the airport list.
                 LatLng latLng = new LatLng(airportList.get(aiportDisplayId).getLatitude(),airportList.get(aiportDisplayId).getLongitude());
+                //we add a marker on this position and move the camera in order to see this airport
                 googleMap.addMarker(new MarkerOptions().position(latLng).title(airportList.get(aiportDisplayId).getLocation()));
                 googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+                //we change the type of the map (satellite view) and adjust the zoom
                 googleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
                 googleMap.setMaxZoomPreference(40);
                 googleMap.setMinZoomPreference(15);
@@ -283,6 +287,7 @@ public class DisplayActivity extends AppCompatActivity {
         AirportSnowTamRetrieving.getInstance().RetrieveInformation(airport.getIcaoCode(),this,  responseListener, errorListener);
     }
 
+    //method called when item is added via drawer, to add icao code to buffer list and update listview through the adapter
     public void addItems() {
         drawerItem.add(new ItemModel(airportList.get(airportList.size()-1).getIcaoCode()));
         adapter.notifyDataSetChanged();
@@ -298,7 +303,7 @@ public class DisplayActivity extends AppCompatActivity {
 
     }
 
-    //probably no longer called, if so could be deleted, same as above ^
+    //handles action when item is clicked
     public void selectItem(int position) {
         Log.d("Debug-", "Click on item" + position);
         Intent intent = new Intent(DisplayActivity.this, DisplayActivity.class);
@@ -341,13 +346,7 @@ public class DisplayActivity extends AppCompatActivity {
     }
 
     void setupDrawerToggle(){
-        mDrawerToggle = new android.support.v7.app.ActionBarDrawerToggle(this,mDrawerLayout,toolbar,R.string.app_name, R.string.app_name)/*{
-            public void onDrawerOpened(View drawerView) {
-                mDrawerList.bringToFront(); //to solve the ItemClickListener not working problem
-                Log.d("Debug-", "Set to front");
-                mDrawerLayout.requestLayout();
-            }
-        }*/;
+        mDrawerToggle = new android.support.v7.app.ActionBarDrawerToggle(this,mDrawerLayout,toolbar,R.string.app_name, R.string.app_name);
         //This is necessary to change the icon of the Drawer Toggle upon state change.
         mDrawerToggle.syncState();
     }
