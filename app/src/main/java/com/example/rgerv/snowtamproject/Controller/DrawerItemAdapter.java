@@ -26,7 +26,9 @@ import static com.example.rgerv.snowtamproject.R.color.colorAccent;
 
 /**
  * Created by Elisabeth on 20/11/2017.
- * Provides data to DisplayActivity
+ * Interfaces DisplayActivity's list of airports with ListView of Drawer
+ * Handles clicks Delete and TextView of items of the ListView
+ * Switches to mainActivity if list is emptied
  */
 
 public class DrawerItemAdapter extends ArrayAdapter<ItemModel>{
@@ -35,7 +37,7 @@ public class DrawerItemAdapter extends ArrayAdapter<ItemModel>{
         int layoutResourceId;
         ArrayList<ItemModel> data = null;
         ListView drawerList;
-
+    //Constructor
     public DrawerItemAdapter(Context mContext, int layoutResourceId, ArrayList<ItemModel> data, ListView drawerList) {
 
         super(mContext, layoutResourceId, data);
@@ -55,7 +57,9 @@ public class DrawerItemAdapter extends ArrayAdapter<ItemModel>{
 
         final TextView textViewName = (TextView) listItem.findViewById(R.id.textViewName);
         ImageButton deleteB = (ImageButton) listItem.findViewById(R.id.deleteViewItem);
-
+        /*Deletes element from list
+        * switches screen to the first item of the list if deleted was displayed
+        * switches to main activity if list is emptied*/
         deleteB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,10 +85,14 @@ public class DrawerItemAdapter extends ArrayAdapter<ItemModel>{
 
             }
         });
-
+        /*Changes currently displayed item appearance in the list*/
         if(position ==DisplayActivity.currentId) {
             textViewName.setTextColor(mContext.getResources().getColor(R.color.colorWhile));
             listItem.setBackgroundColor(mContext.getResources().getColor(R.color.drawerListBackG));
+        /*Defines behavior if item clicked isn't the one displayed
+        * unables the user to click on the item if it's already selected
+        * sets textColor of unselected items
+         */
         }else {
                 textViewName.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -104,9 +112,7 @@ public class DrawerItemAdapter extends ArrayAdapter<ItemModel>{
             }
         ItemModel folder = data.get(position);
 
-
         textViewName.setText(folder.name);
-
 
         return listItem;
     }

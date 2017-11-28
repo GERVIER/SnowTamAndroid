@@ -58,7 +58,7 @@ public class DisplayActivity extends AppCompatActivity {
     private RelativeLayout drawerContainer;
     private List<Airport> airportList;
     private TextView airportNameDisplay;
-    public static ArrayList<ItemModel> drawerItem;
+    public static ArrayList<ItemModel> drawerItem; //list of icao codes from airport list, to fill drawer listView
     public static DrawerItemAdapter adapter;
 
     private ImageButton dValidate;
@@ -70,7 +70,7 @@ public class DisplayActivity extends AppCompatActivity {
     ProgressDialog dialog;
 
     public static Activity display_activity;
-    public static int currentId;
+    public static int currentId; //id of currently displayed item of the airport list
 
     private String DebugTag = "Debug-DisplayActivity";
 
@@ -247,6 +247,7 @@ public class DisplayActivity extends AppCompatActivity {
         AirportSnowTamRetrieving.getInstance().RetrieveInformation(airport.getIcaoCode(),this,  responseListener, errorListener);
     }
 
+    //method called when item is added via drawer, to add icao code to buffer list and update listview through the adapter
     public void addItems() {
         drawerItem.add(new ItemModel(airportList.get(airportList.size()-1).getIcaoCode()));
         adapter.notifyDataSetChanged();
@@ -262,7 +263,7 @@ public class DisplayActivity extends AppCompatActivity {
 
     }
 
-    //probably no longer called, if so could be deleted, same as above ^
+    //probably no longer called, if so could be deleted, same as drawerItemClickListener
     public void selectItem(int position) {
         Log.d("Debug-", "Click on item" + position);
         Intent intent = new Intent(DisplayActivity.this, DisplayActivity.class);
