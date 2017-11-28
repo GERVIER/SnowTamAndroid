@@ -1,7 +1,7 @@
 package com.example.rgerv.snowtamproject;
 
-import android.app.ProgressDialog;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -94,8 +94,26 @@ public class MainActivity extends AppCompatActivity {
                 getString(R.string.searching_airport), true);
         dialog.hide();
 
+
+
     }
 
+    /**
+     * Overrided to allow the list to be updated with the new airport added in the Display View
+     */
+    @Override
+    public void onResume(){
+        super.onResume();
+        layout.removeAllViews();
+        for(Airport a: AirportList.getInstance().getAirportList()) {
+            layout.addView(addCde(a.getIcaoCode() + " " + a.getStateName()));
+        }
+    }
+
+    /**
+     * Search an airport by using it's ICAO code and add it to list if it exist.
+     * Show an error message if no airport is find
+     */
     public void searchAirportLocation(){
         dialog.show();
         Response.Listener<JSONArray> responseListener = new Response.Listener<JSONArray>() {
@@ -140,6 +158,11 @@ public class MainActivity extends AppCompatActivity {
         AirportInfoRetrieving.RetrieveInformation(searchCode.getText().toString().trim(), this, responseListener, errorListener);
     }
 
+    /**
+     * search a snowTam and add it to the airport corresponding to the specified index.
+     * If no snowtam is found, it add a string specifying it.
+     * @param airportIndex index in the airport list corresponding to the airport wanted.
+     */
     public void searchSnowTam(final int airportIndex){
         Airport airport = AirportList.getInstance().getAirportList().get(airportIndex);
         Response.Listener<JSONArray> responseListener = new Response.Listener<JSONArray>() {
@@ -173,6 +196,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 airport.setSnowtam(snowtam);
                 dialog.hide();
+                searchCode.setText("");
             }
         };
 
@@ -201,6 +225,7 @@ public class MainActivity extends AppCompatActivity {
         final TextView airplane_code = new TextView(this);
         airplane_code.setLayoutParams(lparams);
         airplane_code.setText(s);
+        airplane_code.setTextSize(20);
         return airplane_code;
     }
 
@@ -208,7 +233,8 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton createNewButton(final LinearLayout l) {
         final ImageButton airplane_delete = new ImageButton(context);
         final LinearLayout.LayoutParams lparams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        airplane_delete.setImageResource(R.mipmap.ic_delete);
+        airplane_delete.setImageResource(R.drawable.ic_delete);
+        airplane_delete.setBackground(getDrawable(R.color.transparent));
         airplane_delete.setLayoutParams(lparams);
         airplane_delete.setPadding(0,0,0,0);
         airplane_delete.setBackgroundColor(getResources().getColor(R.color.transparent));

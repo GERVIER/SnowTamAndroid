@@ -6,10 +6,7 @@ import android.support.annotation.NonNull;
 import com.example.rgerv.snowtamproject.R;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
-import java.util.Locale;
 
 /**
  * Created by rgerv on 21/11/2017.
@@ -58,24 +55,6 @@ public class SnowTam {
         }
 
         decodedSnowTam = sb.toString();
-        decodedSnowTam +=  analyseJdata(context, "30/5L") + "\n";
-        decodedSnowTam +=  analyseJdata(context, "30/5LR") + "\n";
-        decodedSnowTam +=  analyseJdata(context, "30/5R") + "\n";
-
-        decodedSnowTam +=  analyseKdata(context, "YES", "L") + "\n";
-        decodedSnowTam +=  analyseKdata(context, "YES", "LR") + "\n";
-
-
-        decodedSnowTam +=  analyseLdata(context, "1200/30") + "\n";
-
-        decodedSnowTam +=  analyseMdata(context, "0030") + "\n";
-
-        decodedSnowTam +=  analyseNdata(context, "D4") + "\n";
-        decodedSnowTam +=  analyseNdata(context, "NO") + "\n";
-
-        decodedSnowTam +=  analysePdata(context, "YES20") + "\n";
-
-        decodedSnowTam +=  analyseKdata(context, "D", "NO") + "\n";
     }
 
     /**
@@ -96,7 +75,6 @@ public class SnowTam {
             if(carac.equals("A)")){
                 sb.append("A) ");
                 sb.append(airportLocation);
-                sb.append("\n");
             }
 
             if(carac.equals("B)")){
@@ -229,8 +207,11 @@ public class SnowTam {
                 sb.append("\n");
             }
 
-            if (carac.equals("T) ")){
-                //String data = caracs[];
+            if (carac.equals("T)")){
+                String[] data = getCodedSnowTam().split("T[)]");
+                String[] tData = data[1].split("[)]");
+                sb.append("T) ");
+                sb.append(tData[0]);
             }
         }
 
@@ -600,19 +581,6 @@ public class SnowTam {
         else{
             sb.append(analyseRunwayCondition(context, condition));
         }
-        return sb.toString();
-    }
-
-    /**
-     * decode the data of the  group
-     * @param context of the calling activity
-     * @param carac the group to decode
-     * @return the decoded line
-     */
-    private String analysedata(Context context, String carac){
-        StringBuilder sb = new StringBuilder();
-        sb.append("J) ");
-
         return sb.toString();
     }
 

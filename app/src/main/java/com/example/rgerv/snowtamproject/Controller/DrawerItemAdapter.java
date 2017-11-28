@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -20,9 +19,6 @@ import com.example.rgerv.snowtamproject.Model.ItemModel;
 import com.example.rgerv.snowtamproject.R;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import static com.example.rgerv.snowtamproject.R.color.colorAccent;
 
 /**
  * Created by Elisabeth on 20/11/2017.
@@ -53,8 +49,9 @@ public class DrawerItemAdapter extends ArrayAdapter<ItemModel>{
         LayoutInflater inflater = ((Activity) mContext).getLayoutInflater();
         listItem = inflater.inflate(layoutResourceId, parent, false);
 
-        TextView textViewName = (TextView) listItem.findViewById(R.id.textViewName);
+        final TextView textViewName = (TextView) listItem.findViewById(R.id.textViewName);
         ImageButton deleteB = (ImageButton) listItem.findViewById(R.id.deleteViewItem);
+
         deleteB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,9 +78,10 @@ public class DrawerItemAdapter extends ArrayAdapter<ItemModel>{
             }
         });
 
-        if(position ==DisplayActivity.currentId)
-            textViewName.setTextColor(mContext.getResources().getColor(R.color.colorAccent));
-        else {
+        if(position ==DisplayActivity.currentId) {
+            textViewName.setTextColor(mContext.getResources().getColor(R.color.colorWhile));
+            listItem.setBackgroundColor(mContext.getResources().getColor(R.color.drawerListBackG));
+        }else {
                 textViewName.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -91,7 +89,6 @@ public class DrawerItemAdapter extends ArrayAdapter<ItemModel>{
                         Log.d("Debug-", "Click on text : " + position);
                         Intent intent = new Intent(mContext, DisplayActivity.class);
                         intent.putExtra("airportCode", position);
-
                         drawerList.setItemChecked(position, true);
                         drawerList.setSelection(position);
 
@@ -99,6 +96,7 @@ public class DrawerItemAdapter extends ArrayAdapter<ItemModel>{
                         mContext.startActivity(intent);
                     }
                 });
+                textViewName.setTextColor(mContext.getResources().getColor(R.color.colorAccent));
             }
         ItemModel folder = data.get(position);
 
