@@ -170,7 +170,12 @@ public class SnowTam {
             }
 
             if (carac.equals("N)")){
-                sb.append(analyseNdata(context, caracs[j+1]));
+                try{
+                    sb.append(analyseNdata(context, caracs[j+1]));
+                }catch (StringIndexOutOfBoundsException e){
+                    sb.append("N) ");
+                    sb.append(context.getString(R.string.error_analyse));
+                }
                 sb.append("\n");
             }
 
@@ -214,7 +219,6 @@ public class SnowTam {
                 sb.append(tData[0]);
             }
         }
-
         return sb.toString();
     }
 
@@ -584,6 +588,12 @@ public class SnowTam {
         return sb.toString();
     }
 
+    /**
+     * Analyse the condition of the runway
+     * @param context the context of the calling activity
+     * @param condition the condition to decrypt
+     * @return the decrypted condition
+     */
     private String analyseRunwayCondition(Context context, String condition){
         StringBuilder sb = new StringBuilder();
         switch (condition) {

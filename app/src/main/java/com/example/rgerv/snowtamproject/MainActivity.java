@@ -127,7 +127,6 @@ public class MainActivity extends AppCompatActivity {
                         msg = getString(R.string.incorrect_code);
                         infos = Toast.makeText(context, msg, duration);
                         infos.show();
-
                     }
                     else{
                         JSONObject airport = response.getJSONObject(0);
